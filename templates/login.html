@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .errorMsg{
+            color: red;
+          }
+          form,.singupLabel,.errorMsg { 
+            margin: 0 auto; 
+            width:250px;
+            }
+    </style>
+</head>
+<body bgcolor="#eaff7b">
+    <form  method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="user name"><br>
+
+        <input type="password" name="password" placeholder="password"><br>
+
+        <input type="submit" aria-label="Login">    
+    </form>
+
+    <div class="errorMsg">
+        {% for msg in messages %}
+           <h5>{{msg}}</h5>
+        {% endfor %}
+    </div>
+    <div class="singupLabel">
+        <h5>Don't have an account ?<a href="register">Sing Up</a></h5>
+    </div>
+    
+   
+</body>
+</html>
+

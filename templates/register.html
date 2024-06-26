@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registation</title>
+    <style>
+        .errorMsg{
+            color: red;
+          }
+          form,.errorMsg { 
+            margin: 0 auto; 
+            width:250px;
+            }
+    </style>
+</head>
+<body bgcolor="#29bdc1">
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+
+
+        <input type="text" name="username" placeholder="user name" ><br>
+        <input type="text" name="first_name" placeholder="First Name"><br>
+        <input type="text" name="last_name" placeholder="Last Name"><br>             
+        <input type="email" name="email" placeholder="email"><br>    
+        <input type="password" name="password1" placeholder="Password"><br>
+        <input type="password" name="password2" placeholder="Confrim Password"><br>
+      
+       
+        <input type="submit">
+    </form>   
+    
+    <div class="errorMsg">
+        {%for msg in messages%}
+           <h3>{{msg}}</h3>
+        {%endfor%}
+    </div>
+</body>
+</html>
+
+
+
