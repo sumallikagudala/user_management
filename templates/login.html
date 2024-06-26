@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        body{
+            
+            background-image:url("{% static 'images/login.jpg' %}");
+            background-repeat:no-repeat;
+            background-size:100%;
+            
+        }
         .errorMsg{
             color: red;
           }
@@ -12,9 +20,12 @@
             margin: 0 auto; 
             width:250px;
             }
+         
     </style>
 </head>
-<body bgcolor="#eaff7b">
+
+
+<body> 
     <form  method="POST">
         {% csrf_token %}
         <input type="text" name="username" placeholder="user name"><br>
@@ -30,7 +41,7 @@
         {% endfor %}
     </div>
     <div class="singupLabel">
-        <h5>Don't have an account ?<a href="register">Sing Up</a></h5>
+        <h5>Don't have an account ?<a href="register">Sing Up</a></h5>       
     </div>
     
    

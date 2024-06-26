@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,13 +9,21 @@
         .errorMsg{
             color: red;
           }
-          form,.errorMsg { 
+        form,.errorMsg { 
             margin: 0 auto; 
             width:250px;
             }
+        body{
+            
+                background-image:url("{% static 'images/login.jpg' %}");
+                background-repeat:no-repeat;
+                background-size:100%;
+                
+            }
+
     </style>
 </head>
-<body bgcolor="#29bdc1">
+<body>
     <form action="{% url 'register' %}" method="POST">
         {% csrf_token %}
 

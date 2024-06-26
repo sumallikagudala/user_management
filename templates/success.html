@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,12 +19,15 @@
     .errorMsg{
       color: red;
     }
-    .delete-button{
-
-    }
+    body{
+      background-image:url("{% static 'images/login.jpg' %}");
+      background-repeat:no-repeat;
+      background-size:100%;                
+  }
+    
     </style>
 </head>
-<body bgcolor="#eaff7b">
+<body>
   {% block content%}
 
   {%if user.is_authenticated %}
