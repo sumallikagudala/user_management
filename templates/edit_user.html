@@ -9,7 +9,7 @@
         .errorMsg{
             color: red;
           }
-        form { 
+        form ,.errorMsg{ 
             margin: 0 auto; 
             width:250px;
         }
@@ -25,14 +25,22 @@
 <body>
     <form  method="POST">
         {% csrf_token %}
-
-        <input disabled type="text"  name="username" placeholder="user name" value="{{edit_user.username}}"><br>
-        <input type="text" name="first_name" placeholder="First Name" value="{{edit_user.first_name}}"><br>
-        <input type="text" name="last_name" placeholder="Last Name" value="{{edit_user.last_name}}"><br>             
-        <input type="email" name="email" placeholder="email" value="{{edit_user.email}}"><br>    
-        <input type="password" name="password1" placeholder="Password" value="{{edit_user.password}}"><br>
-        <input type="password" name="password2" placeholder="Confrim Password" value="{{edit_user.password}}"><br>
-             
+        UserName :<br><input disabled type="text"  name="username" placeholder="user name" value="{{edit_user.username}}"><br>
+       
+        {% if 'success' in pageName %}
+        First Name :<br><input type="text" name="first_name" placeholder="First Name" value="{{edit_user.first_name}}"><br>
+        Last Name :<br> <input type="text" name="last_name" placeholder="Last Name" value="{{edit_user.last_name}}"><br>             
+        Email:<br> <input type="email" name="email" placeholder="email" value="{{edit_user.email}}"><br>    
+        Password : <br><input type="password" name="password1" placeholder="Password" value="{{edit_user.password}}"><br>
+        Confirm Password :<br> <input type="password" name="password2" placeholder="Confrim Password" value="{{edit_user.password}}"><br>
+        {% else %}
+        First Name :<br><input type="text" name="first_name" placeholder="First Name" value=""><br>
+        Last Name :<br> <input type="text" name="last_name" placeholder="Last Name" value=""><br>             
+        Email:<br> <input type="email" name="email" placeholder="email" value=""><br>    
+        Password : <br><input type="password" name="password1" placeholder="Password" value=""><br>
+        Confirm Password :<br> <input type="password" name="password2" placeholder="Confrim Password" value=""><br>
+      
+        {% endif %}     
         <input type="submit">
     </form>   
     

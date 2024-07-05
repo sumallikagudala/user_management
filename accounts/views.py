@@ -74,7 +74,7 @@ def success(request):
     try:
         users=User.objects.all()
         # user_id=request.session.get('user_id')
-        # if user_id is not None:
+        # if user_id is not None:     
         return render(request,'success.html',{"users":users})
         # else:
         #     return redirect("login")
@@ -105,20 +105,29 @@ def delete(request,user_id):
     return redirect('success') 
 
 def edit(request,user_id):  
+ try:
     print("*******",user_id) 
     user = User.objects.get(id = user_id)  
-
     if request.method =='POST': 
-      try:
-        user.first_name=request.POST["first_name"]
-        user.last_name=request.POST["last_name"]
-        # user.username=request.POST["username"]
-        user.email=request.POST["email"]
-        user.password=request.POST["password1"]
-        user.save()
-        return redirect('success')
-      except Exception as e: 
-       return redirect('success',{'err':e.message})        
-       
+     
+            user.first_name=request.POST["first_name"]
+            user.last_name=request.POST["last_name"]
+            # user.username=request.POST["username"]
+            user.email=request.POST["email"]
+            user.password=request.POST["password1"]
+            confirmPassword=request.POST["password2"]
+            if '' not in ( user.first_name, user.last_name, user.email, user.password,confirmPassword):
+                if user.password==confirmPassword:                   
+                    user.save()
+                    return redirect('success')
+                else:
+                    messages.info(request,'password is not matching')
+                    return render(request,'edit_user.html',{'edit_user':user,'pageName':'edit'})
+            else:
+                messages.info(request,'All fields are mandatory')
+                return render(request,'edit_user.html',{'edit_user':user,'pageName':'edit'})
     else:
-     return render(request,'edit_user.html',{'edit_user':user})
+     return render(request,'edit_user.html',{'edit_user':user,'pageName':'success'})
+    
+ except Exception as e: 
+       print(e)  
