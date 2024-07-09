@@ -30,10 +30,8 @@
 <body>
   {% block content%}
 
-  {%if user.is_authenticated %}
   <h1> Hello...{{user.first_name}}</h1>
   <a href="logout" class="logout">Logout</a>
-{% endif %}
 
 
 <table>
